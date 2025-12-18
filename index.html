@@ -4,53 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>peaceflow - navigate with clarity & connection</title>
-    
+
+    <meta name="description" content="Peaceflow - dein smarter Begleiter für Gespräche, die verbinden. Klarheit, Verbindung, nächste Schritte.">
+    <meta property="og:title" content="peaceflow - navigate with clarity & connection">
+    <meta property="og:description" content="Gespräche, die verbinden statt zu trennen. Peaceflow begleitet dich durch Konflikte mit Klarheit und Verbindung.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/og-peaceflow.jpg">
+    <meta name="theme-color" content="#fbfbfd">
+
     <link rel="stylesheet" href="https://use.typekit.net/uus7iqo.css">
 
     <style>
-        /* --- VARIABLEN & GRUNDLAGEN --- */
         :root {
             --color-primary-yellow: #e6be1b;
             --color-primary-teal: #5a8a95;
             --color-text-dark: #1d1d1f;
-            --color-text-light: #444444; 
+            --color-text-light: #444444;
             --color-bg-light: #fbfbfd;
             --color-white: #ffffff;
-            
-            /* SCHRIFTARTEN */
+
             --font-headline: "microgramma-extended", sans-serif;
             --font-body: "courier-std", monospace;
-            --font-video: "pf-videotext", sans-serif; 
-            
+            --font-video: "pf-videotext", sans-serif;
+
             --spacing-section: 120px;
-            --border-radius: 20px; /* Für Karten */
-            --btn-radius: 10px;    /* Für Buttons */
+            --border-radius: 20px;
+            --btn-radius: 10px;
+
+            --nav-height: 86px;
+
+            --page-pad: 20px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
             font-weight: 400;
             font-style: normal;
             color: var(--color-text-dark);
-            background-color: transparent; 
+            background-color: transparent;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- HINTERGRUND-LOGIK --- */
+        section { scroll-margin-top: 110px; }
+
+        .text-strong { font-weight: 700; color: var(--color-text-dark); }
+        .text-center { text-align: center; }
+        .mt-40 { margin-top: 40px; }
+        .mt-80 { margin-top: 80px; }
+        .mb-0 { margin-bottom: 0; }
+        .muted { color: #bbb; }
+
         .bg-fixed {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
             z-index: -10;
-            background-image: url('Background-Box1_L.jpg'); 
+            background-image: url('Background-Box1_L.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* --- TYPOGRAFIE --- */
         h1, h2, h3, h4 {
             font-family: var(--font-headline);
             font-weight: 700;
@@ -70,14 +87,14 @@
         h2 {
             font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             color: var(--color-text-dark);
-            line-height: 1.2; 
+            line-height: 1.2;
         }
 
         h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             line-height: 1.4;
-            text-align: left; /* Global links für die Karten */
+            text-align: left;
         }
 
         p {
@@ -95,7 +112,6 @@
             margin-right: auto;
         }
 
-        /* Farb-Highlights */
         .highlight { color: var(--color-primary-teal); }
         .highlight-yellow { color: var(--color-primary-yellow); }
 
@@ -104,27 +120,25 @@
             font-style: normal;
         }
 
-        /* VIDEO TEXT OUTLINE STYLE */
         .highlight-outline {
             font-family: var(--font-video);
             font-weight: 400;
             font-style: normal;
             color: var(--color-white);
-            -webkit-text-stroke: 1px #000; 
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.1); 
+            -webkit-text-stroke: 1px #000;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
             letter-spacing: 2px;
         }
-        
+
         .highlight-outline-inverse {
             font-family: var(--font-video);
             font-weight: 400;
             font-style: normal;
-            color: #000000; 
-            -webkit-text-stroke: 1px #fff; 
+            color: #000000;
+            -webkit-text-stroke: 1px #fff;
             letter-spacing: 2px;
         }
 
-        /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
@@ -133,6 +147,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: var(--nav-height);
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(15px);
             z-index: 1000;
@@ -141,16 +156,17 @@
         }
 
         .logo {
-            font-family: var(--font-headline);
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--color-text-dark);
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: lowercase;
         }
-        
-        .logo span { color: var(--color-primary-teal); }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+            display: block;
+            transform: translateY(10px);
+        }
 
         .nav-links {
             display: flex;
@@ -162,37 +178,82 @@
             text-decoration: none;
             font-family: var(--font-headline);
             font-weight: 700;
-            font-size: 1.1rem; 
+            font-size: 1.1rem;
             color: var(--color-text-dark);
             text-transform: lowercase;
             letter-spacing: 1px;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
         .nav-links a:hover { color: var(--color-primary-teal); }
+        .nav-links a.btn:hover { color: #ffffff; }
 
-        /* --- BUTTONS --- */
+        .nav-toggle {
+            display: none;
+            width: 46px;
+            height: 42px;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-toggle .bar {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            background: rgba(0,0,0,0.75);
+            border-radius: 2px;
+            transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle .bar:nth-child(1) { top: 13px; }
+        .nav-toggle .bar:nth-child(2) { top: 20px; }
+        .nav-toggle .bar:nth-child(3) { top: 27px; }
+
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { top: 20px; transform: rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { top: 20px; transform: rotate(-45deg); }
+
         .btn {
             display: inline-block;
             padding: 15px 35px;
-            background-color: rgba(80, 80, 80, 0.4); 
-            backdrop-filter: blur(10px); 
+            background-color: rgba(80, 80, 80, 0.4);
+            backdrop-filter: blur(10px);
             color: white;
             text-decoration: none;
             font-family: var(--font-headline);
             font-weight: 700;
-            font-size: 1.1rem; 
+            font-size: 1.1rem;
             text-transform: lowercase;
             letter-spacing: 1px;
-            border-radius: var(--btn-radius); 
+            border-radius: var(--btn-radius);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 120%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::after { left: 120%; }
 
         .btn:hover {
             transform: scale(1.02);
-            background-color: rgba(80, 80, 80, 0.7); 
+            background-color: rgba(80, 80, 80, 0.7);
             border-color: rgba(255,255,255,0.4);
         }
 
@@ -202,9 +263,9 @@
             color: var(--color-text-dark);
             border-radius: var(--btn-radius);
         }
-        
+
         #cta .btn-secondary {
-            color: white; 
+            color: white;
             border-color: white;
         }
 
@@ -214,9 +275,8 @@
             border-color: var(--color-primary-yellow);
         }
 
-        /* --- SECTIONS ALLGEMEIN --- */
         section {
-            padding: var(--spacing-section) 20px;
+            padding: var(--spacing-section) var(--page-pad);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -232,7 +292,7 @@
             margin: 0 auto;
         }
 
-        /* --- HERO SECTION --- */
+        /* HERO */
         #hero {
             min-height: 100vh;
             text-align: left;
@@ -240,12 +300,58 @@
             align-items: flex-start;
         }
 
-        #hero h1 { text-align: left; max-width: 950px; margin-bottom: 30px; }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+            gap: 40px;
+            align-items: start;
+        }
+
+        .hero-copy {
+            max-width: 950px;
+            margin-top: 50px;
+        }
+
+        #hero h1 { text-align: left; margin-bottom: 30px; }
         #hero p { text-align: left; font-size: 1.1rem; color: var(--color-text-dark); max-width: 800px; }
 
-        /* --- PAINPOINTS --- */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            margin-top: 18px;     /* war -20px -> verhindert Abschneiden */
+            padding-top: 10px;    /* kleine Luft nach oben */
+            min-height: 420px;    /* etwas mehr Platz für große Varianten */
+
+            width: 100%;
+        }
+
+        /* Früher skalieren + etwas größer starten */
+        .hero-visual img {
+            width: clamp(420px, 36vw, 720px);
+            height: auto;
+            max-height: clamp(320px, 50vh, 600px);
+            object-fit: cover;
+
+            border-radius: 24px;
+            filter: none;
+            box-shadow: none;
+            display: block;
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: 12%;
+            background: radial-gradient(circle at 60% 45%, rgba(0,0,0,0.10), transparent 60%);
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        /* PAINPOINTS */
         #painpoints {
-            background-image: url('Background-Box3_L.jpg'); 
+            background-image: url('Background-Box3_L.jpg');
             background-size: cover;
             text-align: center;
         }
@@ -269,13 +375,13 @@
         .painpoint-card h3 { color: var(--color-primary-teal); }
         .painpoint-card:hover { transform: translateY(-10px); }
 
-        /* --- SOLUTION --- */
+        /* SOLUTION */
         #solution {
             text-align: center;
             background-color: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px); 
+            backdrop-filter: blur(5px);
         }
-        
+
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -288,18 +394,50 @@
             padding: 30px;
             border: 1px solid rgba(0,0,0,0.05);
             border-radius: var(--border-radius);
-            background: rgba(255,255,255,0.7); 
+            background: rgba(255,255,255,0.7);
         }
-        
+
         .feature-icon {
             font-size: 2rem;
             margin-bottom: 20px;
             color: var(--color-primary-yellow);
         }
 
-        /* --- HOW IT WORKS --- */
+        /* HOW IT WORKS */
         #how-it-works {
             background-color: rgba(255,255,255,0.8);
+        }
+
+        .steps-wrapper {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            margin-top: 40px;
+            padding-left: 40px;
+            --flow-progress: 0%;
+        }
+
+        .steps-wrapper::before {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(0,0,0,0.10);
+            border-radius: 2px;
+        }
+
+        .steps-wrapper::after {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 0;
+            height: var(--flow-progress);
+            width: 2px;
+            background: rgba(90,138,149,0.75);
+            border-radius: 2px;
+            transition: height 0.12s linear;
         }
 
         .step {
@@ -307,9 +445,7 @@
             align-items: flex-start;
             gap: 40px;
             margin-bottom: 80px;
-            max-width: 900px;
-            border-left: 1px solid rgba(0,0,0,0.1);
-            padding-left: 40px;
+            width: 100%;
             text-align: left;
         }
 
@@ -323,7 +459,7 @@
             min-width: 60px;
         }
 
-        /* --- USE CASES --- */
+        /* USE CASES */
         #use-cases {
             background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(245,245,247,0.8) 100%);
         }
@@ -345,6 +481,29 @@
             text-align: left;
         }
 
+        .case-card::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(0,0,0,0.14), transparent 65%);
+            transform: rotate(20deg);
+            pointer-events: none;
+        }
+
+        .case-card::before {
+            content: "";
+            position: absolute;
+            bottom: -55px;
+            left: -55px;
+            width: 190px;
+            height: 190px;
+            background: radial-gradient(circle, rgba(0,0,0,0.10), transparent 65%);
+            pointer-events: none;
+        }
+
         .case-tag {
             font-family: var(--font-body);
             text-transform: uppercase;
@@ -356,12 +515,12 @@
             display: block;
         }
 
-        /* --- TESTIMONIALS --- */
+        /* TESTIMONIALS */
         .quote-slider {
             max-width: 900px;
             text-align: center;
         }
-        
+
         .quote-text {
             font-family: var(--font-headline);
             font-size: 1.5rem;
@@ -377,14 +536,13 @@
             font-size: 0.9rem;
         }
 
-        /* --- CTA --- */
+        /* CTA */
         #cta {
             background-color: rgba(0, 0, 0, 0.7);
-	/*  background-color: rgba(29, 29, 31, 0.95); */
             color: white;
             text-align: center;
         }
-        
+
         #cta h2 { color: white; }
         #cta p { color: #ccc; }
 
@@ -406,49 +564,101 @@
             min-width: 280px;
             max-width: 350px;
         }
-        
+
         .cta-box h3 {
             color: var(--color-primary-yellow);
             font-size: 1.2rem;
             text-align: center;
         }
-        
-        .cta-box p {
-            text-align: center;
-        }
 
-        /* --- FOOTER --- */
+        .cta-box p { text-align: center; }
+
+        /* FOOTER */
         footer {
-            padding: 60px 20px;
-        /*  background-color: rgba(255,255,255,0.8); */
-	/*  background-color: #111; */
+            padding: 60px var(--page-pad);
             color: #888;
             text-align: center;
             font-size: 0.8rem;
             font-family: var(--font-body);
-            position: relative; 
+            position: relative;
             z-index: 2;
         }
-        
+
         footer a { color: var(--color-primary-yellow); text-decoration: none; }
 
-        /* --- ANIMATIONS --- */
+        /* ANIMATIONS */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
+            will-change: transform, opacity;
         }
-        
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* RESPONSIVE */
+        @media (max-width: 980px) {
+            nav { padding: 16px 18px; }
+
+            .nav-toggle { display: inline-block; }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: 20px;
+                left: 20px;
+                display: none;
+                flex-direction: column;
+                gap: 18px;
+                padding: 20px;
+                background: rgba(255,255,255,0.92);
+                backdrop-filter: blur(16px);
+                border-radius: 16px;
+                border: 1px solid rgba(0,0,0,0.06);
+                z-index: 1001;
+            }
+
+            .nav-links.open { display: flex; }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+            #hero { align-items: center; }
+
+            .hero-copy { margin-top: 0; }
+
+            .hero-visual {
+                margin-top: 0;
+                padding-top: 0;
+                justify-content: center;
+                min-height: 300px;
+            }
+
+            .hero-visual img {
+                width: min(620px, 92vw);
+                max-height: 360px;
+                object-fit: cover;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
-            .nav-links { display: none; }
-            .step { flex-direction: column; gap: 15px; border-left: none; padding-left: 0; }
+
+            .logo-img {
+                height: 70px;
+                transform: translateY(10px);
+            }
+
+            .step { flex-direction: column; gap: 15px; margin-bottom: 60px; }
             .step-number { font-size: 2rem; }
+
+            .steps-wrapper { padding-left: 0; }
+
+            .steps-wrapper::before,
+            .steps-wrapper::after { display: none; }
         }
     </style>
 </head>
@@ -457,9 +667,18 @@
     <div class="bg-fixed"></div>
 
     <nav>
-        <a href="#" class="logo">peaceflow<span>.ai</span></a>
-        <div class="nav-links">
-            <a href="#how-it-works">wie funktioniert das?</a>
+        <a href="#" class="logo" aria-label="peaceflow startseite">
+            <img src="Peaceflow_Logo.png" alt="peaceflow" class="logo-img">
+        </a>
+
+        <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#how-it-works">funktion</a>
             <a href="#use-cases">use cases</a>
             <a href="#solution">lösungen</a>
             <a href="#cta" class="btn">starten</a>
@@ -468,20 +687,33 @@
 
     <section id="hero">
         <div class="container reveal">
-            <h1>manche situationen<br>brauchen mehr als<br><span class="highlight-outline">gute absichten</span><span class="headline-dot">.</span></h1>
-            <p>Peaceflow ist dein smarter Begleiter – für Gespräche, die verbinden, statt zu trennen. Wann immer du ihn brauchst. Wo immer du gerade stehst.</p>
-            <br>
-            <p style="font-weight: 700; color: var(--color-text-dark);">Stell dir vor: Klarheit, wo Chaos war. Verbindung, wo Spannung war.</p>
-            <br>
-            <a href="#cta" class="btn">jetzt ausprobieren</a>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <h1>manche situationen<br>brauchen mehr als<br><span class="highlight-outline">gute absichten</span><span class="headline-dot">.</span></h1>
+                    <p>Peaceflow ist dein smarter Begleiter - für Gespräche, die verbinden, statt zu trennen. Wann immer du ihn brauchst. Wo immer du gerade stehst.</p>
+                    <p class="text-strong">Stell dir vor: Klarheit, wo Chaos war. Verbindung, wo Spannung war.</p>
+                    <a href="#cta" class="btn">jetzt ausprobieren</a>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <img
+                        src="Chamaeleon.png"
+                        sizes="(max-width: 900px) 92vw, 720px"
+                        alt=""
+                        loading="eager"
+                        decoding="async"
+                    >
+                    <div class="hero-glow"></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="painpoints">
         <div class="container reveal">
             <h2>konflikte sind <span class="highlight-outline">komplex</span><span class="headline-dot">.</span></h2>
-            <p class="section-intro">Frust? Überlastung? Sackgasse? Ob im Team,</br> in der Partnerschaft oder mit dir selbst.</p>
-            
+            <p class="section-intro">Frust? Überlastung? Sackgasse? Ob im Team,<br>in der Partnerschaft oder mit dir selbst.</p>
+
             <div class="painpoint-grid">
                 <div class="painpoint-card">
                     <h3>das problem</h3>
@@ -513,18 +745,18 @@
                 <div class="feature-item">
                     <div class="feature-icon">🔗</div>
                     <h3>es verbindet.</h3>
-                    <p>Ob mentale Klarheit oder Strategie: Peaceflow bringt dich zur passenden Unterstützung – von Coaching über Mediation bis Psychologie.</p>
+                    <p>Ob mentale Klarheit oder Strategie: Peaceflow bringt dich zur passenden Unterstützung - von Coaching über Mediation bis Psychologie.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🤝</div>
                     <h3>es begleitet.</h3>
-                    <p>Auch zwischen den Sitzungen. Peaceflow kann ergänzen, vertiefen und vorbereiten – auch wenn dein Coach gerade Feierabend hat.</p>
+                    <p>Auch zwischen den Sitzungen. Peaceflow kann ergänzen, vertiefen und vorbereiten - auch wenn dein Coach gerade Feierabend hat.</p>
                 </div>
             </div>
-            
-            <div style="margin-top: 80px; text-align: center;">
-                <h3 style="text-align: center;">führungskraft oder hr?</h3>
-                <p class="section-intro">Peaceflow hilft, Krisen zu entschärfen, bevor sie Flächenbrände werden. Kein Ersatz für Profis – sondern ihr digitaler Kollege.</p>
+
+            <div class="mt-80 text-center">
+                <h3 class="text-center">führungskraft oder hr?</h3>
+                <p class="section-intro">Peaceflow hilft, Krisen zu entschärfen, bevor sie Flächenbrände werden. Kein Ersatz für Profis - sondern ihr digitaler Kollege.</p>
             </div>
         </div>
     </section>
@@ -533,37 +765,38 @@
         <div class="container reveal">
             <h2>wie peaceflow <span class="highlight-outline">funktioniert</span><span class="headline-dot">.</span></h2>
             <p class="section-intro">Du erzählst. Peaceflow versteht. Und begleitet dich Schritt für Schritt.</p>
-            <br><br>
 
-            <div class="step">
-                <div class="step-number">01</div>
-                <div>
-                    <h3>du startest das gespräch.</h3>
-                    <p>Du beschreibst, was dich beschäftigt. Klar, emotional oder chaotisch. Peaceflow hört zu und bleibt dran.</p>
+            <div class="steps-wrapper" id="flowSteps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div>
+                        <h3>du startest das gespräch.</h3>
+                        <p>Du beschreibst, was dich beschäftigt. Klar, emotional oder chaotisch. Peaceflow hört zu und bleibt dran.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="step">
-                <div class="step-number">02</div>
-                <div>
-                    <h3>peaceflow sortiert.</h3>
-                    <p>Die KI erkennt, worum es dir wirklich geht. Sie stellt Fragen, nicht um zu analysieren, sondern um dich zu stärken.</p>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div>
+                        <h3>peaceflow sortiert.</h3>
+                        <p>Die KI erkennt, worum es dir wirklich geht. Sie stellt Fragen, nicht um zu analysieren, sondern um dich zu stärken.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="step">
-                <div class="step-number">03</div>
-                <div>
-                    <h3>du bekommst unterstützung.</h3>
-                    <p>Verhandlung, Coaching, Psychologie oder Mediation. Du bekommst kein Standard-Blabla, sondern passgenaue Antworten.</p>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div>
+                        <h3>du bekommst unterstützung.</h3>
+                        <p>Verhandlung, Coaching, Psychologie oder Mediation. Du bekommst kein Standard-Blabla, sondern passgenaue Antworten.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="step">
-                <div class="step-number">04</div>
-                <div>
-                    <h3>alles bleibt im fluss.</h3>
-                    <p>Es erinnert sich an dein Warum. So entsteht eine Begleitung, die sich echt anfühlt.</p>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div>
+                        <h3>alles bleibt im fluss.</h3>
+                        <p>Es erinnert sich an dein Warum. So entsteht eine Begleitung, die sich echt anfühlt.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -572,8 +805,8 @@
     <section id="use-cases">
         <div class="container reveal">
             <h2 style="text-align: center; margin-bottom: 60px;">peaceflow <span class="highlight-outline">in action</span><span class="headline-dot">.</span></h2>
+
             <div class="case-grid">
-                
                 <div class="case-card">
                     <span class="case-tag">team & leadership</span>
                     <h3>julia, 37</h3>
@@ -594,9 +827,9 @@
                     <p><strong>Situation:</strong> Nach Burnout-Vorfall ist das Team verunsichert.</p>
                     <p style="margin-top: 15px;"><strong>Mit Peaceflow:</strong> Präventives Angebot für alle. Anonyme Reflexion verbessert das Betriebsklima spürbar.</p>
                 </div>
-
             </div>
-            <div style="text-align: center; margin-top: 40px;">
+
+            <div class="text-center mt-40">
                 <a href="#cta" class="btn btn-secondary">praxisbeispiele entdecken</a>
             </div>
         </div>
@@ -605,10 +838,12 @@
     <section id="testimonials">
         <div class="container reveal quote-slider">
             <div class="quote-text">„ich hätte nicht gedacht, dass ein digitales gespräch so menschlich sein kann.“</div>
-            <div class="quote-author">– Nutzer:in nach einem Familiengespräch</div>
-            <br><br>
-            <div class="quote-text">„ich hab mich zum ersten mal bei einer ki nicht klein gefühlt – sondern ernst genommen.“</div>
-            <div class="quote-author">– Nutzer:in mit mentaler Belastung</div>
+            <div class="quote-author">- Nutzer:in nach einem Familiengespräch</div>
+
+            <div style="height: 30px;"></div>
+
+            <div class="quote-text">„ich hab mich zum ersten mal bei einer ki nicht klein gefühlt - sondern ernst genommen.“</div>
+            <div class="quote-author">- Nutzer:in mit mentaler Belastung</div>
         </div>
     </section>
 
@@ -616,7 +851,7 @@
         <div class="container reveal">
             <h2>bereit, konflikt <span class="highlight-outline-inverse">neu zu erleben</span>?</h2>
             <p>Peaceflow ist bereit für dich. Nicht perfekt. Aber bereit.</p>
-            
+
             <div class="cta-options">
                 <div class="cta-box">
                     <h3>privatpersonen</h3>
@@ -642,34 +877,103 @@
     <footer>
         <div class="container">
             <img src="AICT_Logo_4C.png" alt="AICT Group Logo" style="max-width: 450px; margin-bottom: 20px; display: inline-block;">
-            
-               <p style="max-width: 600px; margin: 0 auto; color: #BBB;">
+
+            <p style="max-width: 600px; margin: 0 auto; color: #BBB;">
                 Peaceflow ist Teil einer größeren Bewegung. Für eine Welt, in der Konflikte transformiert werden.
                 Amplified Intelligence for Conflict Transformation.
             </p>
-            <br>
+
+            <div style="height: 16px;"></div>
+
             <a href="https://aict.group">Mehr über die AICT Group erfahren</a>
-            <br><br>
+
+            <div style="height: 16px;"></div>
+
             <p style="font-size: 0.7rem; color: #999;">&copy; 2025 peaceflow. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', reveal);
-        function reveal(){
-            var reveals = document.querySelectorAll('.reveal');
-            for(var i = 0; i < reveals.length; i++){
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
-                if(revealtop < windowheight - revealpoint){
-                    reveals[i].classList.add('active');
-                } else {
-                    reveals[i].classList.remove('active');
-                }
+        // Mobile Nav Toggle
+        (function () {
+            const toggle = document.querySelector('.nav-toggle');
+            const links = document.querySelector('.nav-links');
+
+            if (toggle && links) {
+                toggle.addEventListener('click', () => {
+                    const isOpen = links.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                });
+
+                links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                    links.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }));
             }
-        }
-        reveal();
+        })();
+
+        // Reveal Animation via IntersectionObserver (inkl. Reduced Motion)
+        (function () {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (prefersReduced) {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+                return;
+            }
+
+            const io = new IntersectionObserver((entries, obs) => {
+                for (const e of entries) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('active');
+                        obs.unobserve(e.target);
+                    }
+                }
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        })();
+
+        // Flow Progress in "How it works"
+        (function () {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const steps = document.getElementById('flowSteps');
+            if (!steps || prefersReduced) return;
+
+            let isActive = false;
+
+            const clamp01 = (v) => Math.max(0, Math.min(1, v));
+
+            const update = () => {
+                if (!isActive) return;
+
+                const rect = steps.getBoundingClientRect();
+                const vh = window.innerHeight || document.documentElement.clientHeight;
+
+                const start = vh * 0.85;
+                const end = vh * 0.15;
+
+                const total = (rect.height + (start - end));
+                const progressed = (start - rect.top);
+
+                const p = clamp01(progressed / total);
+                steps.style.setProperty('--flow-progress', (p * 100).toFixed(2) + '%');
+            };
+
+            const io = new IntersectionObserver((entries) => {
+                for (const e of entries) {
+                    if (e.target !== steps) continue;
+                    isActive = e.isIntersecting;
+                    if (isActive) update();
+                }
+            }, { threshold: 0.05 });
+
+            io.observe(steps);
+
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
     </script>
+
 </body>
 </html>
